@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: fcss-07
+  datasource:
+    hikari:
+      jdbc-url: jdbc:mysql://localhost:3306/spring
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password: admin
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    database: mysql
+    show-sql: true
+  sql:
+    init:
+      mode: always
+      data-locations: classpath:sql/data.sql
+      schema-locations: classpath:sql/schema.sql
