@@ -1,6 +1,6 @@
 package fast.campus.fcss07.security;
 
-import fast.campus.fcss07.domain.User;
+import fast.campus.fcss07.domain.user.User;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

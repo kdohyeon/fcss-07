@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS `spring`.`users` (
 CREATE TABLE IF NOT EXISTS `spring`.`authorities` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(45) NOT NULL,
-    `user` INT NOT NULL,
+    `user_entity` INT NOT NULL,
     PRIMARY KEY (`id`)
 );
 

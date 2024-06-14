@@ -1,6 +1,6 @@
 package fast.campus.fcss07.security;
 
-import fast.campus.fcss07.domain.User;
+import fast.campus.fcss07.domain.user.User;
 import fast.campus.fcss07.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;

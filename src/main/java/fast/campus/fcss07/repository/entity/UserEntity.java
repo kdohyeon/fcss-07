@@ -1,15 +1,21 @@
 package fast.campus.fcss07.repository.entity;
 
 import fast.campus.fcss07.domain.EncryptionAlgorithm;
-import fast.campus.fcss07.domain.User;
+import fast.campus.fcss07.domain.user.CreateUser;
+import fast.campus.fcss07.domain.user.User;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @Entity
 @Table(name = "users")
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,5 +41,15 @@ public class UserEntity {
                 .algorithm(this.algorithm)
                 .authorities(this.authorities.stream().map(AuthorityEntity::toAuthority).toList())
                 .build();
+    }
+
+    public static UserEntity newUser(CreateUser create) {
+        return new UserEntity(
+                null,
+                create.getUsername(),
+                create.getPassword(),
+                EncryptionAlgorithm.BCRYPT,
+                AuthorityEntity.readAuthority()
+        );
     }
 }
