@@ -17,6 +17,7 @@ public class UserController {
 
     private final UserService userService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
     @PostMapping("/api/v1/register")
     public ResultResponse<String> register(@RequestBody UserRegisterRequestBody requestBody) {
         String result = userService.register(new CreateUser(requestBody.getUsername(), bCryptPasswordEncoder.encode(requestBody.getPassword())));

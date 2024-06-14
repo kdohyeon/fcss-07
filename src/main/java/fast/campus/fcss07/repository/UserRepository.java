@@ -15,6 +15,11 @@ public class UserRepository {
     private final UserJpaRepository userJpaRepository;
 
     @Transactional(readOnly = true)
+    public Boolean userExists(String username) {
+        return userJpaRepository.findUserByUsername(username).isPresent();
+    }
+
+    @Transactional(readOnly = true)
     public User getUserByUsername(String username) {
         return userJpaRepository.findUserByUsername(username)
                 .orElseThrow(UserNotFoundException::new)

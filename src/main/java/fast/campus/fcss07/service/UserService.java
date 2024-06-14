@@ -12,6 +12,9 @@ public class UserService {
     private final UserRepository userRepository;
 
     public String register(CreateUser create) {
+        if (userRepository.userExists(create.getUsername())) {
+            throw new RuntimeException(String.format("User [%s] already exists", create.getUsername()));
+        }
         return userRepository.create(create).getUsername();
     }
 
