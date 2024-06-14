@@ -34,6 +34,12 @@ public class UserEntity {
     @OneToMany(mappedBy = "userEntity", fetch = FetchType.EAGER)
     private List<AuthorityEntity> authorities;
 
+    public UserEntity(String username, String password, EncryptionAlgorithm algorithm) {
+        this.username = username;
+        this.password = password;
+        this.algorithm = algorithm;
+    }
+
     public User toUser() {
         return User.builder()
                 .username(this.username)
@@ -43,13 +49,15 @@ public class UserEntity {
                 .build();
     }
 
+    public void replaceAuthority(List<AuthorityEntity> authorities) {
+        this.authorities = authorities;
+    }
+
     public static UserEntity newUser(CreateUser create) {
         return new UserEntity(
-                null,
                 create.getUsername(),
                 create.getPassword(),
-                EncryptionAlgorithm.BCRYPT,
-                AuthorityEntity.readAuthority()
+                EncryptionAlgorithm.BCRYPT
         );
     }
 }

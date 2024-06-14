@@ -6,9 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Getter
 @Entity
 @Table(name = "authorities")
@@ -26,19 +23,14 @@ public class AuthorityEntity {
     @ManyToOne
     private UserEntity userEntity;
 
-    AuthorityEntity(String name) {
+    public AuthorityEntity(String name, UserEntity user) {
         this.name = name;
+        this.userEntity = user;
     }
 
     public Authority toAuthority() {
         return Authority.builder()
                 .name(this.name)
                 .build();
-    }
-
-    public static List<AuthorityEntity> readAuthority() {
-        List<AuthorityEntity> result = new ArrayList<AuthorityEntity>();
-        result.add(new AuthorityEntity("READ"));
-        return result;
     }
 }
